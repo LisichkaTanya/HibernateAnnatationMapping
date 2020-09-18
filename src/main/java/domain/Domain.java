@@ -4,17 +4,22 @@ import bl.HibernateUtil;
 import entity.Address;
 import entity.Employee;
 import entity.Project;
-import org.hibernate.Session;
+import service.AddressService;
+import service.EmployeeService;
+import service.ProjectService;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Domain {
-    public static void main(String[] args) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
+    public static void main(String[] args) throws SQLException {
+        AddressService addressService = new AddressService();
+        EmployeeService employeeService = new EmployeeService();
+        ProjectService projectService = new ProjectService();
 
         Address address = new Address();
         address.setCountry("Russia");
@@ -43,11 +48,13 @@ public class Domain {
         projects.add(project);
         employee.setProjects(projects);
 
-        session.save(address);
-        session.save(employee);
-        session.save(project);
+        List<Address> a = addressService.getAll();
+        System.out.println(a);
+//        addressService.add(address);
+//        employeeService.add(employee);
 
-        session.getTransaction().commit();
+        //projectService.add(project); так как у нас Cascade.ALL то это можно удалить, иначе задвоится проект
+
         HibernateUtil.shutdown();
     }
 }
