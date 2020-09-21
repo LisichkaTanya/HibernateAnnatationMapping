@@ -2,6 +2,7 @@ package service;
 
 import bl.SessionUtil;
 import dao.EmployeeDAO;
+import dao.GenericDAO;
 import entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -9,7 +10,7 @@ import org.hibernate.query.Query;
 import java.sql.SQLException;
 import java.util.List;
 
-public class EmployeeService extends SessionUtil implements EmployeeDAO {
+public class EmployeeService extends SessionUtil implements GenericDAO<Employee, Long> {
 
     @Override
     public void add(Employee employee) throws SQLException {

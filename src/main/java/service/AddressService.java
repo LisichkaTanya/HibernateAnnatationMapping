@@ -1,7 +1,7 @@
 package service;
 
 import bl.SessionUtil;
-import dao.AddressDAO;
+import dao.GenericDAO;
 import entity.Address;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -9,7 +9,7 @@ import org.hibernate.query.Query;
 import java.sql.SQLException;
 import java.util.List;
 
-public class AddressService extends SessionUtil implements AddressDAO {
+public class AddressService extends SessionUtil implements GenericDAO<Address, Long> {
 
     @Override
     public void add(Address address) throws SQLException {
@@ -31,7 +31,7 @@ public class AddressService extends SessionUtil implements AddressDAO {
     }
 
     @Override
-    public Address getById(long id) throws SQLException {
+    public Address getById(Long id) throws SQLException {
         openTransactionSession();
         String sql = "SELECT * FROM ADDRESS WHERE ID = :id";
         Session session = getSession();

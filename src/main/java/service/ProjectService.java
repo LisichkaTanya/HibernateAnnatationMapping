@@ -1,6 +1,7 @@
 package service;
 
 import bl.SessionUtil;
+import dao.GenericDAO;
 import dao.ProjectDAO;
 import entity.Project;
 import org.hibernate.Session;
@@ -9,7 +10,7 @@ import org.hibernate.query.Query;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ProjectService extends SessionUtil implements ProjectDAO {
+public class ProjectService extends SessionUtil implements GenericDAO<Project, Long> {
 
     @Override
     public void add(Project project) throws SQLException {

@@ -24,17 +24,17 @@ public class Domain {
         Address address = new Address();
         address.setCountry("Russia");
         address.setCity("Moscow");
-        address.setStreet("Lisichka, 14");
-        address.setPostCode("232547");
+        address.setStreet("Lesnoy, 13");
+        address.setPostCode("448337");
 
         Project project = new Project();
-        project.setTitle("4856");
+        project.setTitle("Generic");
 
         Employee employee = new Employee();
-        employee.setFirstName("Tatiana");
+        employee.setFirstName("Daria");
         employee.setLastName("Solomatina");
         Calendar calendar = Calendar.getInstance();
-        calendar.set(1982, Calendar.JULY, 15);
+        calendar.set(2010, Calendar.NOVEMBER, 14);
         employee.setBirthday(new Date(calendar.getTime().getTime()));
         employee.setAddress(address);
 
@@ -48,10 +48,10 @@ public class Domain {
         projects.add(project);
         employee.setProjects(projects);
 
-        List<Address> a = addressService.getAll();
-        System.out.println(a);
-//        addressService.add(address);
-//        employeeService.add(employee);
+//        List<Address> a = addressService.getAll();
+//        System.out.println(a);
+        addressService.add(address);
+        employeeService.add(employee);
 
         //projectService.add(project); так как у нас Cascade.ALL то это можно удалить, иначе задвоится проект
 
